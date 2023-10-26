@@ -47,8 +47,14 @@ h6 {
   height: 36vw;
   background-size: cover;
   background-position: center center;
-  background-image: url("../img/cars_home/audi_1.jpg");
+  /* background-image: url("../img/cars_home/audi_1.jpg"); */
   margin-bottom: 30px;
+}
+
+/* carousel */
+.imgCars{
+  height: 36vw;
+  object-fit:fill;
 }
 
 #home h1 span {
@@ -108,7 +114,4 @@ h6 {
 #footer ul li a:visited {
   color: #eeeeee;
   text-decoration: none;
-}
-.description-cars { 
-  font-size: 13px;
 }
