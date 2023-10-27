@@ -34,43 +34,12 @@ h6 {
 
 /*****************************************************************
 
-    HOME
+    Filter
 
 /*****************************************************************/
 
-#home {
-  flex: 1;
-}
-
-#home-intro {
-  border-bottom: 4px solid #ff8f00;
-  height: 36vw;
-  background-size: cover;
-  background-position: center center;
-  background-image: url("../img/cars_home/audi_1.jpg");
-  margin-bottom: 30px;
-}
-
-#home h1 span {
-  font-weight: 300;
-}
-
-#home .card h4 {
-  font-size: 1.3rem;
-  margin: 0;
-}
-
-#home hr {
-  margin: 1.9rem 0 2.5rem;
-}
-
-@media (max-width: 767px) {
-  #home-intro {
-    height: 30vh;
-  }
-  #home h1 {
-    font-size: 1.8rem;
-  }
+#FilterContainer button {
+  background-color: #ff8f00;
 }
 
 /*****************************************************************
@@ -109,6 +78,6 @@ h6 {
   color: #eeeeee;
   text-decoration: none;
 }
-.description-cars { 
+.description-cars {
   font-size: 13px;
 }
