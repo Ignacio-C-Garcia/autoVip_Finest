@@ -44,11 +44,11 @@ h6 {
 
 #home-intro {
   border-bottom: 4px solid #ff8f00;
-  height: 36vw;
   background-size: cover;
   background-position: center center;
   /* background-image: url("../img/cars_home/audi_1.jpg"); */
   margin-bottom: 30px;
+  padding-top: 0;
 }
 
 /* carousel */
@@ -56,6 +56,8 @@ h6 {
   height: 36vw;
   object-fit:fill;
 }
+
+
 
 #home h1 span {
   font-weight: 300;
