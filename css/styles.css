@@ -34,7 +34,7 @@ h6 {
 
 /*****************************************************************
 
-    Filter
+    HOME
 
 /*****************************************************************/
 
@@ -79,10 +79,8 @@ h6 {
   #home h1 {
     font-size: 1.8rem;
   }
-#FilterContainer button {
-  background-color: #ff8f00;
 }
-}
+
 /*****************************************************************
 
     FOOTER
@@ -118,7 +116,4 @@ h6 {
 #footer ul li a:visited {
   color: #eeeeee;
   text-decoration: none;
-}
-.description-cars { 
-  font-size: 13px;
 }
