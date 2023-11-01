@@ -44,27 +44,25 @@ h6 {
 
 #home-intro {
   border-bottom: 4px solid #ff8f00;
-
-  background-size: cover;
-  background-position: center center;
-  /* background-image: url("../img/cars_home/audi_1.jpg"); */
   margin-bottom: 30px;
+  height: 36vw;
 }
 
 /* carousel */
-.imgCars{
-  height: 36vw;
-  object-fit:fill;
+.imgCars {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
 
 @media (max-width: 767px) {
-  .imgCars {
+  #home-intro {
     height: 30vh;
   }
+  #home h1 {
+    font-size: 1.8rem;
+  }
 }
-
-
 
 #home h1 span {
   font-weight: 300;
@@ -79,16 +77,8 @@ h6 {
   margin: 1.9rem 0 2.5rem;
 }
 
-@media (max-width: 767px) {
-  #home-intro {
-    height: 30vh;
-  }
-  #home h1 {
-    font-size: 1.8rem;
-  }
 #FilterContainer button {
   background-color: #ff8f00;
-}
 }
 /*****************************************************************
 
@@ -126,6 +116,6 @@ h6 {
   color: #eeeeee;
   text-decoration: none;
 }
-.description-cars { 
+.description-cars {
   font-size: 13px;
 }
