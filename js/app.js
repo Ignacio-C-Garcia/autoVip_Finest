@@ -27,16 +27,14 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
       <div class="d-flex justify-content-between">
         <h3>${car.brand} ${car.model}</h3>
         <span
-          >2017 | USD 110.000 | <i class="bi bi-star-fill"></i
+          >${car.year} | USD ${car.price_usd} | <i class="bi bi-star-fill"></i
           ><i class="bi bi-star-fill"></i
           ><i class="bi bi-star-fill"></i><i class="bi bi-star"></i
           ><i class="bi bi-star"></i>
         </span>
       </div>
       <p class="description-cars">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id
-        ducimus exercitationem voluptate ab ex quibusdam, fuga
-        reiciendis fugit illum nihil.
+        ${car.description}}
       </p>
       <button type="button" class="btn btn-success">
         <i class="bi bi-cart-check"></i> Comprar
