@@ -2,6 +2,7 @@
 const carsContainer = document.querySelector(".carsContainer");
 const selectBrand = document.querySelector("#brand");
 const selectYear = document.querySelector("#year");
+const selectModel = document.querySelector("#model");
 
 function cargarAutomoviles() {
   fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
@@ -10,36 +11,45 @@ function cargarAutomoviles() {
     })
     .then(function (cars) {
       for (const car of cars) {
+        car.isNew = car.status
+          ? `<span class="badge bg-warning position-absolute mt-3 mx-3">New</span>`
+          : "";
+        car.stars = ``;
+        for (let i = 0; i < car.rating; i++) {
+          car.stars += `<i class="bi bi-star-fill"></i>`;
+        }
+        for (let i = car.rating; i < 5; i++) {
+          car.stars += `<i class="bi bi-star"></i>`;
+        }
         carsContainer.insertAdjacentHTML(
           "beforeend",
           `<div class="row mb-3">
             <div class="col-12 col-lg-4">
-              <div class="position-relative">
-                <span class="badge bg-warning position-absolute mt-3 mx-3">New</span>
+              <div class="position-relative h-100">
+                ${car.isNew}
                 <img src="${car.image}" class="img-thumbnail" alt="...">
               </div>
             </div>
-            <div class="col-12 col-lg-8 pb-5">
-              <div class="d-flex justify-content-between">
-                <h3>${car.brand} ${car.model}</h3>
-                <span>${car.year} | USD ${car.price_usd} | 
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                </span>
-              </div>
-              <p class="description-cars">${car.description}</p>
-              <button type="button" class="btn btn-success">
-                <i class="bi bi-cart-check"></i> Comprar
-              </button>
-              <button type="button" class="btn btn-outline-secondary">
-                <i class="bi bi-plus-circle"></i> Mas Informacion
-              </button>
-              <button type="button" class="btn btn-outline-secondary">
-                <i class="bi bi-share"></i> Compartir
-              </button>
+            <div class="col-12 col-lg-8 pb-1 d-flex flex-column justify-content-between">
+              <div><div class="d-flex justify-content-between">
+              <h3>${car.brand} ${car.model}</h3>
+              <span>${car.year} | USD ${car.price_usd} | ${car.stars}
+              </span>
             </div>
-          </div>`
+            <p class="description-cars">${car.description}</p></div>
+              <div>
+              <button type="button" class="btn btn-success">
+              <i class="bi bi-cart-check"></i> Comprar
+            </button>
+            <button type="button" class="btn btn-outline-secondary">
+              <i class="bi bi-plus-circle"></i> Mas Informacion
+            </button>
+            <button type="button" class="btn btn-outline-secondary">
+              <i class="bi bi-share"></i> Compartir
+            </button></div>
+            </div>
+          </div>
+         <hr>`
         );
       }
     })
@@ -68,17 +78,33 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     return res.json();
   })
   .then(function (brands) {
-    for (const brand of brands) {
-      const option = document.createElement("option");
-      option.value = brand;
-      option.text = brand;
-      selectBrand.appendChild(option);
-    }
+    insertToSelector(selectBrand,brands)
+    selectBrand.addEventListener("change", (e) => {
+      fetch(
+        `https://ha-front-api-proyecto-final.vercel.app/models?brand=${e.target.value}`
+      )
+        .then((res) => res.json())
+        .then((models) => {
+          insertToSelector(selectModel, models);
+        });
+    });
   })
   .catch(function (err) {
     console.error(err);
   });
 
+function insertToSelector(selector, optionList) {
+  let firstOption = selector.firstElementChild;
+  selector.innerHTML = "";
+  selector.appendChild(firstOption);
+  for (const option of optionList) {
+    const newOption = document.createElement("option");
+    newOption.value = option;
+    newOption.text = option;
+    selector.appendChild(newOption);
+  }
+}
+/*
 // Llama a la función para cargar los automóviles cuando se carga la página.
 
 const yearSelect = document.getElementById("year");
@@ -109,7 +135,8 @@ filterButton.addEventListener("click", function () {
 
   // Muestra los automóviles filtrados
   for (const car of filteredCars) {
-    carsContainer.insertAdjacentHTML(/* Código HTML para mostrar el automóvil */);
+    carsContainer.insertAdjacentHTML(// Código HTML para mostrar el automóvil
+    );
   }
 });
 
@@ -148,3 +175,4 @@ function llenarSelector(selector, valores) {
 
 // Llama a la función para llenar los selectores
 llenarSelectores();
+*/
