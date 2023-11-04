@@ -28,6 +28,11 @@ function cargarAutomoviles(apiURL) {
         for (let i = car.rating; i < 5; i++) {
           car.stars += `<i class=" text-warning bi bi-star"></i>`;
         }
+        car.price_usd = new Intl.NumberFormat("es-ES", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0,
+        }).format(car.price_usd);
         carsContainer.insertAdjacentHTML(
           "beforeend",
           `<div id="carItem">
