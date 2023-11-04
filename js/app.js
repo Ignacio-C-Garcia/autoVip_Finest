@@ -23,10 +23,10 @@ function cargarAutomoviles(apiURL) {
           : "";
         car.stars = ``;
         for (let i = 0; i < car.rating; i++) {
-          car.stars += `<i class="bi bi-star-fill"></i>`;
+          car.stars += `<i class="text-warning bi bi-star-fill "></i>`;
         }
         for (let i = car.rating; i < 5; i++) {
-          car.stars += `<i class="bi bi-star"></i>`;
+          car.stars += `<i class=" text-warning bi bi-star"></i>`;
         }
         carsContainer.insertAdjacentHTML(
           "beforeend",
@@ -35,7 +35,7 @@ function cargarAutomoviles(apiURL) {
             <div class="col-12 col-lg-4">
               <div class="position-relative h-100">
                 ${car.isNew}
-                <img src="${car.image}" class="img-thumbnail" alt="...">
+                <img src="${car.image}" class="img-thumbnail" alt="${car.brand} ${car.model}">
               </div>
             </div>
             <div class="col-12 col-lg-8 pb-1 d-flex flex-column justify-content-between">
@@ -47,7 +47,7 @@ function cargarAutomoviles(apiURL) {
             <p class="description-cars">${car.description}</p></div>
               <div>
               <button type="button" class="btn btn-success">
-              <i class="bi bi-cart-check"></i> Comprar
+              <i class="bi bi-cart-check "></i> Comprar
             </button>
             <button type="button" class="btn btn-outline-secondary">
               <i class="bi bi-plus-circle"></i> Mas Informacion
@@ -132,76 +132,11 @@ function insertToSelector(selector, optionList) {
     selector.appendChild(newOption);
   }
 }
-
-/*
-// Llama a la función para cargar los automóviles cuando se carga la página.
-
-const yearSelect = document.getElementById("year");
-const brandSelect = document.getElementById("brand");
-const modelSelect = document.getElementById("model");
-const stateSelect = document.getElementById("state");
-const filterButton = document.querySelector(".btn-warning");
-
-filterButton.addEventListener("click", function () {
-  // Obtén los valores seleccionados
-  const selectedYear = yearSelect.value;
-  const selectedBrand = brandSelect.value;
-  const selectedModel = modelSelect.value;
-  const selectedState = stateSelect.value;
-
-  // Filtra los automóviles basados en los valores seleccionados
-  const filteredCars = cars.filter((car) => {
-    return (
-      (selectedYear === "Todos" || car.year === selectedYear) &&
-      (selectedBrand === "Todos" || car.brand === selectedBrand) &&
-      (selectedModel === "Todos" || car.model === selectedModel) &&
-      (selectedState === "Todos" || car.state === selectedState)
-    );
-  });
-
-  // Limpia la sección de listados de automóviles
-  carsContainer.innerHTML = "";
-
-  // Muestra los automóviles filtrados
-  for (const car of filteredCars) {
-    carsContainer.insertAdjacentHTML(// Código HTML para mostrar el automóvil
-    );
-  }
+const filtrar = document.querySelector("#buttonFiltrer");
+filtrar.addEventListener("click", function (filtrar) {
+  const year = document.querySelector("#year").value;
+  const brand = document.querySelector("#brand").value;
+  const model = document.querySelector("#model").value;
+  const state = document.querySelector("#state").value;
+  cargarAutomoviles(`https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`)
 });
-
-// Llena los selectores con valores únicos de la lista de automóviles
-function llenarSelectores() {
-  const years = Array.from(new Set(cars.map((car) => car.year)));
-  const brands = Array.from(new Set(cars.map((car) => car.brand)));
-  const models = Array.from(new Set(cars.map((car) => car.model)));
-  const states = Array.from(new Set(cars.map((car) => car.state)));
-
-  // Llena los selectores
-  llenarSelector(yearSelect, years);
-  llenarSelector(brandSelect, brands);
-  llenarSelector(modelSelect, models);
-  llenarSelector(stateSelect, states);
-}
-
-function llenarSelector(selector, valores) {
-  // Limpia el selector
-  selector.innerHTML = "";
-
-  // Agrega una opción "Todos"
-  const optionTodos = document.createElement("option");
-  optionTodos.value = "Todos";
-  optionTodos.textContent = "Todos";
-  selector.appendChild(optionTodos);
-
-  // Llena el selector con los valores únicos
-  for (const valor of valores) {
-    const option = document.createElement("option");
-    option.value = valor;
-    option.textContent = valor;
-    selector.appendChild(option);
-  }
-}
-
-// Llama a la función para llenar los selectores
-llenarSelectores();
-*/
