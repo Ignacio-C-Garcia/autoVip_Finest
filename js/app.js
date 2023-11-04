@@ -28,11 +28,7 @@ function cargarAutomoviles(apiURL) {
         for (let i = car.rating; i < 5; i++) {
           car.stars += `<i class=" text-warning bi bi-star"></i>`;
         }
-        car.price_usd = new Intl.NumberFormat("es-ES", {
-          style: "currency",
-          currency: "USD",
-          maximumFractionDigits: 0,
-        }).format(car.price_usd);
+        car.price_usd = new Intl.NumberFormat("es").format(car.price_usd);
         carsContainer.insertAdjacentHTML(
           "beforeend",
           `<div id="carItem">
@@ -83,7 +79,7 @@ function cargarAños(desde, hasta) {
   }
 
   const selectYear = document.querySelector("#year");
-  for (let year = desde; year <= hasta; year++) {
+  for (let year = hasta; year >= desde; year--) {
     const option = document.createElement("option");
     option.value = year;
     option.text = year;
@@ -137,6 +133,7 @@ function insertToSelector(selector, optionList) {
     selector.appendChild(newOption);
   }
 }
+
 const filtrar = document.querySelector("#buttonFiltrer");
 filtrar.addEventListener("click", function (filtrar) {
   const year = document.querySelector("#year").value;
