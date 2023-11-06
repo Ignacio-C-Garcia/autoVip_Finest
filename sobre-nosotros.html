@@ -96,14 +96,16 @@
         <hr />
         <div class="row">
           <div class="col-12 col-md-12 col-lg-6">
-            <img src="img/about_us/about.jpg" class="img-fluid mt-4 rounded-2" alt="" />
+            <img
+              src="img/about_us/about.jpg"
+              class="img-fluid mt-4 rounded-2"
+              alt=""
+            />
           </div>
 
           <div class="col-12 col-md-12 col-lg-6 mt-3 container">
             <div class="row">
-              <h1 class="">
-                <span>AUTO</span><strong>VIP</strong>
-              </h1>
+              <h1 class=""><span>AUTO</span><strong>VIP</strong></h1>
               <ul>
                 <list>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -258,7 +260,7 @@
       </div>
     </div>
 
-    <div
+     <div
       id="contacto-modal"
       class="modal fade"
       tabindex="-1"
@@ -277,7 +279,11 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form
+              id="myForm"
+              action="https://formspree.io/f/xleyvpvk"
+              method="POST"
+            >
               <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input
@@ -311,17 +317,21 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
+            <input
+              type="submit"
               class="btn btn-success"
               data-bs-dismiss="modal"
-            >
-              Enviar
-            </button>
+              form="myForm"
+              value="Enviar"
+            />
           </div>
         </div>
       </div>
-    </div>
+    </div>   
+
+
+
+
 
     <!-- Boostrap -->
     <script

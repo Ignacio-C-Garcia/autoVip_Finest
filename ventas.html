@@ -136,7 +136,11 @@
                 </select>
               </div>
               <div class="d-grid">
-                <button type="button" id="buttonFiltrer" class="btn btn-warning text-white">
+                <button
+                  type="button"
+                  id="buttonFiltrer"
+                  class="btn btn-warning text-white"
+                >
                   <i class="bi bi-search"> </i>Filtrar
                 </button>
               </div>
@@ -145,9 +149,9 @@
         </div>
 
         <div id="carsContainer" class="col-12 col-lg-10"></div>
-
       </div>
     </div>
+
     <div
       id="contacto-modal"
       class="modal fade"
@@ -167,7 +171,11 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form
+              id="myForm"
+              action="https://formspree.io/f/xleyvpvk"
+              method="POST"
+            >
               <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input
@@ -201,17 +209,18 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
+            <input
+              type="submit"
               class="btn btn-success"
               data-bs-dismiss="modal"
-            >
-              Enviar
-            </button>
+              form="myForm"
+              value="Enviar"
+            />
           </div>
         </div>
       </div>
     </div>
+
     <div id="footer">
       <div class="container">
         <div class="row">

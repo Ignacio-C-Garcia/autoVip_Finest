@@ -297,13 +297,15 @@
             </ul>
           </div>
 
-          <div class="col-md-3 ">
+          <div class="col-md-3">
             <p style="color: #ddd">Copyright &copy; AutoVIP 2023</p>
           </div>
         </div>
       </div>
     </div>
-
+    
+  
+<!---MODAL-->
     <div
       id="contacto-modal"
       class="modal fade"
@@ -323,7 +325,11 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form
+              id="myForm"
+              action="https://formspree.io/f/xleyvpvk"
+              method="POST"
+            >
               <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input
@@ -357,13 +363,13 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
+            <input
+              type="submit"
               class="btn btn-success"
               data-bs-dismiss="modal"
-            >
-              Enviar
-            </button>
+              form="myForm"
+              value="Enviar"
+            />
           </div>
         </div>
       </div>
