@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
-  <body>
+  <body data-bs-theme="light">
     <nav id="header" class="navbar navbar-expand-md fixed-top navbar-dark">
       <div class="container">
         <a class="navbar-brand" href="index.html">
@@ -88,6 +88,9 @@
                 >Contacto</a
               >
             </li>
+            <button onclick="cambiarTema()" class="btn rounded-fill">
+              <i id="moon" class="text-light bi bi-moon"></i>
+            </button>
           </ul>
         </div>
       </div>
@@ -136,7 +139,11 @@
                 </select>
               </div>
               <div class="d-grid">
-                <button type="button" id="buttonFiltrer" class="btn btn-warning text-white">
+                <button
+                  type="button"
+                  id="buttonFiltrer"
+                  class="btn btn-warning text-white"
+                >
                   <i class="bi bi-search"> </i>Filtrar
                 </button>
               </div>
@@ -145,7 +152,6 @@
         </div>
 
         <div id="carsContainer" class="col-12 col-lg-10"></div>
-
       </div>
     </div>
     <div
