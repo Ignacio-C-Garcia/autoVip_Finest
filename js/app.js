@@ -17,6 +17,15 @@ function cargarAutomoviles(apiURL) {
     .then(function (cars) {
       const carsContainer = document.querySelector("#carsContainer");
       carsContainer.innerHTML = "";
+      const carsAlert = document.querySelector("#carsContainer");
+      if (cars.length === 0) {
+        carsAlert.insertAdjacentHTML(
+          "beforeend",
+          `<div class="alert alert-warning" role="alert">
+        No se encontraron resultados 
+      </div>`
+        );
+      }
       for (const car of cars) {
         car.isNew = car.status
           ? `<span class="badge bg-warning position-absolute mt-3 mx-3">New</span>`
@@ -140,5 +149,7 @@ filtrar.addEventListener("click", function (filtrar) {
   const brand = document.querySelector("#brand").value;
   const model = document.querySelector("#model").value;
   const state = document.querySelector("#state").value;
-  cargarAutomoviles(`https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`)
+  cargarAutomoviles(
+    `https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`
+  );
 });
