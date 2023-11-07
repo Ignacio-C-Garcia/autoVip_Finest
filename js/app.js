@@ -17,6 +17,15 @@ function cargarAutomoviles(apiURL) {
     .then(function (cars) {
       const carsContainer = document.querySelector("#carsContainer");
       carsContainer.innerHTML = "";
+      const carsAlert = document.querySelector("#carsContainer");
+      if (cars.length === 0) {
+        carsAlert.insertAdjacentHTML(
+          "beforeend",
+          `<div class="alert alert-warning" role="alert">
+        No se encontraron resultados 
+      </div>`
+        );
+      }
       for (const car of cars) {
         car.isNew = car.status
           ? `<span class="badge bg-warning position-absolute mt-3 mx-3">New</span>`
