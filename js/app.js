@@ -7,7 +7,7 @@ cargarMarcasyModelos();
 
 /*
  * cargarAutomoviles - Extrae informacion de la API para crear "carItems" e insertarlos en #CarContainer
- * @param{apiURL} - url de la api para extraer informacion
+ * @param{apiURL} - url de la api para extraer informacions
  */
 function cargarAutomoviles(apiURL) {
   fetch(apiURL)
@@ -32,10 +32,10 @@ function cargarAutomoviles(apiURL) {
           : "";
         car.stars = ``;
         for (let i = 0; i < car.rating; i++) {
-          car.stars += `<i class=" text-warning stars bi bi-star-fill "></i>`;
+          car.stars += `<i class="text-warning bi bi-star-fill "></i>`;
         }
         for (let i = car.rating; i < 5; i++) {
-          car.stars += `<i class=" text-warning stars bi bi-star  d"></i>`;
+          car.stars += `<i class=" text-warning bi bi-star"></i>`;
         }
         car.price_usd = new Intl.NumberFormat("es").format(car.price_usd);
         carsContainer.insertAdjacentHTML(
@@ -45,24 +45,24 @@ function cargarAutomoviles(apiURL) {
             <div class="col-12 col-lg-4">
               <div class="position-relative h-100">
                 ${car.isNew}
-                <img src="${car.image}" class="img-fluid rounded-2" alt="${car.brand} ${car.model}">
+                <img src="${car.image}" class="img-thumbnail" alt="${car.brand} ${car.model}">
               </div>
             </div>
             <div class="col-12 col-lg-8 pb-1 d-flex flex-column justify-content-between">
-              <div><div class="d-flex justify-content-between ">
+              <div><div class="d-flex justify-content-between">
               <h3>${car.brand} ${car.model}</h3>
               <span>${car.year} | USD ${car.price_usd} | ${car.stars}
               </span>
             </div>
             <p class="description-cars">${car.description}</p></div>
-              <div class= "d-flex wrap ">
-              <button type="button" class="m-1 btnShop btn btn-success">
+              <div>
+              <button type="button" class="btn btn-success">
               <i class="bi bi-cart-check "></i> Comprar
             </button>
-            <button type="button" class="m-1 btn btn-outline-secondary">
+            <button type="button" class="btn btn-outline-secondary">
               <i class="bi bi-plus-circle"></i> Mas Informacion
             </button>
-            <button type="button" class="m-1 btn btn-outline-secondary">
+            <button type="button" class="btn btn-outline-secondary">
               <i class="bi bi-share"></i> Compartir
             </button></div>
             </div>
@@ -149,23 +149,5 @@ filtrar.addEventListener("click", function (filtrar) {
   const brand = document.querySelector("#brand").value;
   const model = document.querySelector("#model").value;
   const state = document.querySelector("#state").value;
-  cargarAutomoviles(
-    `https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`
-  );
+  cargarAutomoviles(`https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`)
 });
-
-const temaOscuro = () => {
-  document.querySelector("body").setAttribute("data-bs-theme", "dark");
-  document.querySelector("#moon").setAttribute("class", "bi bi-sun-fill");
-};
-
-const temaClaro = () => {
-  document.querySelector("body").setAttribute("data-bs-theme", "light");
-  document.querySelector("#moon").setAttribute("class", "text-light bi bi-moon");
-};
-
-const cambiarTema = () => {
-  document.querySelector("body").getAttribute("data-bs-theme") === "light"
-    ? temaOscuro()
-    : temaClaro();
-};
