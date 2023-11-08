@@ -17,6 +17,15 @@ function cargarAutomoviles(apiURL) {
     .then(function (cars) {
       const carsContainer = document.querySelector("#carsContainer");
       carsContainer.innerHTML = "";
+      const carsAlert = document.querySelector("#carsContainer");
+      if (cars.length === 0) {
+        carsAlert.insertAdjacentHTML(
+          "beforeend",
+          `<div class="alert alert-warning" role="alert">
+        No se encontraron resultados 
+      </div>`
+        );
+      }
       for (const car of cars) {
         car.isNew = car.status
           ? `<span class="badge bg-warning position-absolute mt-3 mx-3">New</span>`
@@ -50,10 +59,10 @@ function cargarAutomoviles(apiURL) {
               <button type="button" class="btn btn-color">
               <i class="bi bi-cart-check "></i> Comprar
             </button>
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="m-2 btn btn-outline-secondary">
               <i class="bi bi-plus-circle"></i> Mas Informacion
             </button>
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="m-2 btn btn-outline-secondary">
               <i class="bi bi-share"></i> Compartir
             </button></div>
             </div>
@@ -142,3 +151,17 @@ filtrar.addEventListener("click", function (filtrar) {
   const state = document.querySelector("#state").value;
   cargarAutomoviles(`https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`)
 });
+
+const temaOscuro = () => {
+  document.querySelector("body").setAttribute("data-bs-theme", "dark");
+  document.querySelector("#moon").setAttribute("class", "bi bi-sun-fill");
+};
+const temaClaro = () => {
+  document.querySelector("body").setAttribute("data-bs-theme", "light");
+  document.querySelector("#moon").setAttribute("class", "text-light bi bi-moon");
+};
+const cambiarTema = () => {
+  document.querySelector("body").getAttribute("data-bs-theme") === "light"
+    ? temaOscuro()
+    : temaClaro();
+};
