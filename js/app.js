@@ -161,13 +161,3 @@ function insertToSelector(selector, optionList) {
     selector.appendChild(newOption);
   }
 }
-
-const filtrar = document.querySelector("#buttonFiltrer");
-filtrar.addEventListener("click", function (filtrar) {
-  const year = document.querySelector("#year").value;
-  const brand = document.querySelector("#brand").value;
-  const model = document.querySelector("#model").value;
-  const state = document.querySelector("#state").value;
-  cargarAutomoviles(`https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`)
-});
-
