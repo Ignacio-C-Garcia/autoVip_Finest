@@ -1,17 +1,30 @@
-// ejecutar funcion cargar automoviles
+const filtrar = document.querySelector("#buttonFiltrer");
+const carsContainer = document.querySelector("#carsContainer");
+
 cargarAutomoviles("https://ha-front-api-proyecto-final.vercel.app/cars");
-// ejecutar funcion cargar años
+
 cargarAños(1900, 2023);
-// ejecutar funcion cargar marcas
+
 cargarMarcasyModelos();
+
+filtrar.addEventListener("click", function () {
+  const year = document.querySelector("#year");
+  const brand = document.querySelector("#brand");
+  const model = document.querySelector("#model");
+  const state = document.querySelector("#state");
+  cargarAutomoviles(
+    `https://ha-front-api-proyecto-final.vercel.app/cars?year=${year.value}&brand=${brand.value}&model=${model.value}&status=${state.value}`
+  );
+});
 
 /*
  * cargarAutomoviles - Extrae informacion de la API para crear "carItems" e insertarlos en #CarContainer
+ * si no hay información devuelta por la API, inserta en #CarContainer una alerta de Bootstrap
  * @param{apiURL} - url de la api para extraer informacions
  */
 function cargarAutomoviles(apiURL) {
   carsContainer.innerHTML = "";
-  document.getElementById("carsContainer").insertAdjacentHTML(
+  carsContainer.insertAdjacentHTML(
     "beforeend",
     `<div class="d-flex justify-content-center aling-items-center h-100">
             <img src="img/loader/Spinner-1s-200px (2).svg" alt="" />
@@ -22,11 +35,9 @@ function cargarAutomoviles(apiURL) {
       return res.json();
     })
     .then(function (cars) {
-      const carsContainer = document.querySelector("#carsContainer");
       carsContainer.innerHTML = "";
-      const carsAlert = document.querySelector("#carsContainer");
       if (cars.length === 0) {
-        carsAlert.insertAdjacentHTML(
+        carsContainer.insertAdjacentHTML(
           "beforeend",
           `<div class="alert alert-warning" role="alert">
         No se encontraron resultados 
@@ -85,9 +96,9 @@ function cargarAutomoviles(apiURL) {
 }
 
 /*
- * cargarAños - Inserta dentro del Select con id="year" Options con todos los años entre param{desde} y param{hasta}
+ * cargarAños - Inserta dentro del Select con id="year" Options con todos los años entre param{desde} y param{hasta} (Orden descendente)
  * @param{desde} - Numero que representa un año
- * @param {hasta} - Numero que representa un año posterior a param{desde}
+ * @param{hasta} - Numero que representa un año posterior a param{desde}
  */
 function cargarAños(desde, hasta) {
   if (desde > hasta) {
@@ -95,6 +106,7 @@ function cargarAños(desde, hasta) {
   }
 
   const selectYear = document.querySelector("#year");
+
   for (let year = hasta; year >= desde; year--) {
     const option = document.createElement("option");
     option.value = year;
@@ -105,43 +117,42 @@ function cargarAños(desde, hasta) {
 }
 
 /*
- * cargarMarcasyModelos - Extrae informacion de la API para crear e insertar Options dentro del Select con id="brand" y
- * extrae informacion de la API dependiendo el brand que el usuario elija para crear Options dentro del select con id="model"
+ * cargarMarcasyModelos - Extrae informacion de la API para crear e insertar Options dentro del Select #brand y
+ * extrae informacion de la API dependiendo el brand que el usuario elija para crear Options dentro del select #model"
  */
 function cargarMarcasyModelos() {
+  const selectBrand = document.querySelector("#brand");
+  const selectModel = document.querySelector("#model");
+
   fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     .then(function (res) {
       return res.json();
     })
     .then(function (brands) {
-      const selectBrand = document.querySelector("#brand");
-      const selectModel = document.querySelector("#model");
-
       insertToSelector(selectBrand, brands);
-      selectBrand.addEventListener("change", (e) => {
-        fetch(
-          `https://ha-front-api-proyecto-final.vercel.app/models?brand=${e.target.value}`
-        )
-          .then((res) => res.json())
-          .then((models) => {
-            insertToSelector(selectModel, models);
-          });
-      });
     })
     .catch(function (err) {
       console.error(err);
     });
+
+  selectBrand.addEventListener("change", (e) => {
+    fetch(
+      `https://ha-front-api-proyecto-final.vercel.app/models?brand=${e.target.value}`
+    )
+      .then((res) => res.json())
+      .then((models) => {
+        insertToSelector(selectModel, models);
+      });
+  });
 }
 
 /*
- * insertToSelector - Elimina todas las option de un Selector (menos la primera), luego crea e inserta nuevas option con los datos ingresados en la lista
+ * insertToSelector - Elimina todas las option de un Selector (menos la primera), luego crea e inserta nuevas option con los datos de {optionList}
  * @param{selector} - Objeto que hace referencia a una etiqueta select del HTML
  * @param{optionList} - Array de strings
  */
 function insertToSelector(selector, optionList) {
-  let firstOption = selector.firstElementChild;
-  selector.innerHTML = "";
-  selector.appendChild(firstOption);
+  selector.innerHTML = `<option value="">Seleccionar...</option>`;
   for (const option of optionList) {
     const newOption = document.createElement("option");
     newOption.value = option;
@@ -149,17 +160,6 @@ function insertToSelector(selector, optionList) {
     selector.appendChild(newOption);
   }
 }
-
-const filtrar = document.querySelector("#buttonFiltrer");
-filtrar.addEventListener("click", function (filtrar) {
-  const year = document.querySelector("#year").value;
-  const brand = document.querySelector("#brand").value;
-  const model = document.querySelector("#model").value;
-  const state = document.querySelector("#state").value;
-  cargarAutomoviles(
-    `https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`
-  );
-});
 
 const temaOscuro = () => {
   document.querySelector("body").setAttribute("data-bs-theme", "dark");
