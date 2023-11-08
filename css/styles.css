@@ -125,8 +125,7 @@ h6 {
   object-fit: cover;
 }
 
-
-
-/* sobre nosotros */
-
-
+.btn-color {
+  color: #eeeeee;
+  background-color: #ff8f00;
+}

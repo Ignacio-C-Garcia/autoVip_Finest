@@ -47,7 +47,7 @@ function cargarAutomoviles(apiURL) {
             </div>
             <p class="description-cars">${car.description}</p></div>
               <div>
-              <button type="button" class="btn btn-success">
+              <button type="button" class="btn btn-color">
               <i class="bi bi-cart-check "></i> Comprar
             </button>
             <button type="button" class="btn btn-outline-secondary">
