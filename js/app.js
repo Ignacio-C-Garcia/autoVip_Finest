@@ -10,6 +10,13 @@ cargarMarcasyModelos();
  * @param{apiURL} - url de la api para extraer informacions
  */
 function cargarAutomoviles(apiURL) {
+  carsContainer.innerHTML = "";
+  document.getElementById("carsContainer").insertAdjacentHTML(
+    "beforeend",
+    `<div class="d-flex justify-content-center aling-items-center h-100">
+            <img src="img/loader/Spinner-1s-200px (2).svg" alt="" />
+          </div>`
+  );
   fetch(apiURL)
     .then(function (res) {
       return res.json();
@@ -149,7 +156,9 @@ filtrar.addEventListener("click", function (filtrar) {
   const brand = document.querySelector("#brand").value;
   const model = document.querySelector("#model").value;
   const state = document.querySelector("#state").value;
-  cargarAutomoviles(`https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`)
+  cargarAutomoviles(
+    `https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`
+  );
 });
 
 const temaOscuro = () => {
@@ -158,7 +167,9 @@ const temaOscuro = () => {
 };
 const temaClaro = () => {
   document.querySelector("body").setAttribute("data-bs-theme", "light");
-  document.querySelector("#moon").setAttribute("class", "text-light bi bi-moon");
+  document
+    .querySelector("#moon")
+    .setAttribute("class", "text-light bi bi-moon");
 };
 const cambiarTema = () => {
   document.querySelector("body").getAttribute("data-bs-theme") === "light"
