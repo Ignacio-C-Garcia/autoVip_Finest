@@ -125,7 +125,8 @@ h6 {
   object-fit: cover;
 }
 
-.btn-color {
-  color: #eeeeee;
-  background-color: #ff8f00;
+.btn-info{
+  display: flex;
+  gap: 5px;
+
 }

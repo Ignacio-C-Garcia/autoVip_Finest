@@ -35,7 +35,7 @@ function cargarAutomoviles(apiURL) {
           car.stars += `<i class="text-warning bi bi-star-fill "></i>`;
         }
         for (let i = car.rating; i < 5; i++) {
-          car.stars += `<i class=" text-warning bi bi-star"></i>`;
+          car.stars += `<i class="text-warning bi bi-star"></i>`;
         }
         car.price_usd = new Intl.NumberFormat("es").format(car.price_usd);
         carsContainer.insertAdjacentHTML(
@@ -48,21 +48,22 @@ function cargarAutomoviles(apiURL) {
                 <img src="${car.image}" class="img-thumbnail" alt="${car.brand} ${car.model}">
               </div>
             </div>
-            <div class="col-12 col-lg-8 pb-1 d-flex flex-column justify-content-between">
-              <div><div class="d-flex justify-content-between">
+            <div class="col-12 col-lg-8  d-flex flex-column justify-content-between">
+              <div><div class="d-flex justify-content-between mt-2">
               <h3>${car.brand} ${car.model}</h3>
-              <span>${car.year} | USD ${car.price_usd} | ${car.stars}
+              <span >${car.year} | USD ${car.price_usd} | ${car.stars}
               </span>
             </div>
-            <p class="description-cars">${car.description}</p></div>
-              <div>
-              <button type="button" class="btn btn-color">
+            <p class="description-cars">${car.description}</p>
+            </div>
+              <div class="btn-info">
+              <button type="button" class="btn btn-success">
               <i class="bi bi-cart-check "></i> Comprar
             </button>
-            <button type="button" class="m-2 btn btn-outline-secondary">
+            <button type="button" class="btn btn-outline-secondary">
               <i class="bi bi-plus-circle"></i> Mas Informacion
             </button>
-            <button type="button" class="m-2 btn btn-outline-secondary">
+            <button type="button" class="btn btn-outline-secondary">
               <i class="bi bi-share"></i> Compartir
             </button></div>
             </div>
@@ -152,16 +153,3 @@ filtrar.addEventListener("click", function (filtrar) {
   cargarAutomoviles(`https://ha-front-api-proyecto-final.vercel.app/cars?year=${year}&brand=${brand}&model=${model}&status=${state}`)
 });
 
-const temaOscuro = () => {
-  document.querySelector("body").setAttribute("data-bs-theme", "dark");
-  document.querySelector("#moon").setAttribute("class", "bi bi-sun-fill");
-};
-const temaClaro = () => {
-  document.querySelector("body").setAttribute("data-bs-theme", "light");
-  document.querySelector("#moon").setAttribute("class", "text-light bi bi-moon");
-};
-const cambiarTema = () => {
-  document.querySelector("body").getAttribute("data-bs-theme") === "light"
-    ? temaOscuro()
-    : temaClaro();
-};
