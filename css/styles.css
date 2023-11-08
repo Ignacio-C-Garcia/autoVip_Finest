@@ -125,8 +125,11 @@ h6 {
   object-fit: cover;
 }
 
-.btn-info{
+.btn-info {
   display: flex;
   gap: 5px;
+}
 
+a :hover {
+  transform: scale(1.1);
 }

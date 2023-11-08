@@ -67,7 +67,7 @@ function cargarAutomoviles(apiURL) {
               </div>
             </div>
             <div class="col-12 col-lg-8  d-flex flex-column justify-content-between">
-              <div><div class="d-flex justify-content-between mt-2">
+              <div><div class="d-flex justify-content-between">
               <h3>${car.brand} ${car.model}</h3>
               <span >${car.year} | USD ${car.price_usd} | ${car.stars}
               </span>
